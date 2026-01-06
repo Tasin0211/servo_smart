@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /venvservo-smart-app-firebase-adminsdk.json
+/venv
