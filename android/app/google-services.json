@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "980618845214",
+    "project_id": "servo-smart-app",
+    "storage_bucket": "servo-smart-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980618845214:android:7ca2aecc550abf5c95e20f",
+        "android_client_info": {
+          "package_name": "com.example.servo_smart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnvhWnT0mQCx7SVl4IBN3jMyyptGbi0D8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
