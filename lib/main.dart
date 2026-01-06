@@ -10,7 +10,7 @@ import 'utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -19,7 +19,7 @@ void main() async {
     print('Firebase initialization error: $e');
     // Continue even if Firebase isn't configured for demo purposes
   }
-  
+
   runApp(const MyApp());
 }
 

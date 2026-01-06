@@ -10,7 +10,7 @@ class AppColors {
   static const Color textSecondary = Color(0xFF757575);
   static const Color errorColor = Color(0xFFD32F2F);
   static const Color successColor = Color(0xFF388E3C);
-  
+
   // Status Colors
   static const Color upcomingColor = Color(0xFF2196F3);
   static const Color ongoingColor = Color(0xFFFF9800);
@@ -20,7 +20,7 @@ class AppColors {
 
 // App Strings
 class AppStrings {
-  static const String appName = 'Home Services';
+  static const String appName = 'Servo Smart';
   static const String login = 'Login';
   static const String register = 'Register';
   static const String email = 'Email';
@@ -46,14 +46,14 @@ class ServiceTypes {
   static const String cook = 'cook';
   static const String plumber = 'plumber';
   static const String electrician = 'electrician';
-  
+
   static const Map<String, IconData> serviceIcons = {
     cleaner: Icons.cleaning_services,
     cook: Icons.restaurant,
     plumber: Icons.plumbing,
     electrician: Icons.electrical_services,
   };
-  
+
   static const Map<String, String> serviceNames = {
     cleaner: 'Cleaner',
     cook: 'Cook',
@@ -68,7 +68,7 @@ class BookingStatus {
   static const String ongoing = 'ongoing';
   static const String completed = 'completed';
   static const String cancelled = 'cancelled';
-  
+
   static Color getStatusColor(String status) {
     switch (status) {
       case upcoming:
