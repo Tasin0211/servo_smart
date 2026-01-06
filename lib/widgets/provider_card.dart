@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/provider_model.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -31,19 +32,57 @@ class ProviderCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                // Provider Avatar
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: AppColors.primaryColor.withOpacity(0.1),
-                  child: Text(
-                    provider.name.isNotEmpty ? provider.name[0].toUpperCase() : 'P',
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
+                // Provider Image or Avatar
+                provider.imageUrl.isNotEmpty
+                    ? ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: provider.imageUrl,
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => CircleAvatar(
+                            radius: 30,
+                            backgroundColor: AppColors.primaryColor.withOpacity(
+                              0.1,
+                            ),
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => CircleAvatar(
+                            radius: 30,
+                            backgroundColor: AppColors.primaryColor.withOpacity(
+                              0.1,
+                            ),
+                            child: Text(
+                              provider.name.isNotEmpty
+                                  ? provider.name[0].toUpperCase()
+                                  : 'P',
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : CircleAvatar(
+                        radius: 30,
+                        backgroundColor: AppColors.primaryColor.withOpacity(
+                          0.1,
+                        ),
+                        child: Text(
+                          provider.name.isNotEmpty
+                              ? provider.name[0].toUpperCase()
+                              : 'P',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
                 const SizedBox(width: AppDimensions.paddingMedium),
                 // Provider Info
                 Expanded(
@@ -112,7 +151,9 @@ class ProviderCard extends StatelessWidget {
                   backgroundColor: AppColors.primaryColor,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                    borderRadius: BorderRadius.circular(
+                      AppDimensions.borderRadius,
+                    ),
                   ),
                 ),
                 child: const Text(

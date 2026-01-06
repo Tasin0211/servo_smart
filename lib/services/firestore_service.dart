@@ -3,6 +3,7 @@ import '../models/user_model.dart';
 import '../models/provider_model.dart';
 import '../models/booking_model.dart';
 import '../utils/constants.dart';
+import '../utils/utils.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -10,29 +11,40 @@ class FirestoreService {
   // User operations
   Future<UserModel?> getUser(String userId) async {
     try {
+      logger.d(
+        '🔍 FirestoreService.getUser - Querying Firestore for userId: $userId',
+      );
       final doc = await _firestore
           .collection(FirestoreCollections.users)
           .doc(userId)
           .get();
-      
+
       if (doc.exists) {
-        return UserModel.fromFirestore(doc);
+        logger.i('✅ User document found in Firestore');
+        final userData = UserModel.fromFirestore(doc);
+        logger.d('📄 User data: ${userData.email}, Role: ${userData.role}');
+        return userData;
       }
+      logger.w(
+        '⚠️ User document does NOT exist in Firestore for userId: $userId',
+      );
       return null;
     } catch (e) {
-      print('Error getting user: $e');
+      logger.e('❌ Error getting user from Firestore: $e');
       return null;
     }
   }
 
   Future<void> createUser(UserModel user) async {
     try {
+      logger.i('💾 Creating user in Firestore: ${user.email}, UID: ${user.id}');
       await _firestore
           .collection(FirestoreCollections.users)
           .doc(user.id)
           .set(user.toFirestore());
+      logger.i('✅ User document created successfully');
     } catch (e) {
-      print('Error creating user: $e');
+      logger.e('❌ Error creating user in Firestore: $e');
       rethrow;
     }
   }
@@ -50,13 +62,15 @@ class FirestoreService {
   }
 
   // Provider operations
-  Future<List<ServiceProviderModel>> getProvidersByServiceType(String serviceType) async {
+  Future<List<ServiceProviderModel>> getProvidersByServiceType(
+    String serviceType,
+  ) async {
     try {
       final querySnapshot = await _firestore
           .collection(FirestoreCollections.providers)
           .where('serviceType', isEqualTo: serviceType)
           .get();
-      
+
       return querySnapshot.docs
           .map((doc) => ServiceProviderModel.fromFirestore(doc))
           .toList();
@@ -72,7 +86,7 @@ class FirestoreService {
           .collection(FirestoreCollections.providers)
           .doc(providerId)
           .get();
-      
+
       if (doc.exists) {
         return ServiceProviderModel.fromFirestore(doc);
       }
@@ -97,9 +111,9 @@ class FirestoreService {
           .collection(FirestoreCollections.providers)
           .doc(providerId)
           .update({
-        'rating': newAverageRating,
-        'totalReviews': newTotalReviews,
-      });
+            'rating': newAverageRating,
+            'totalReviews': newTotalReviews,
+          });
     } catch (e) {
       print('Error updating provider rating: $e');
       rethrow;
@@ -119,7 +133,10 @@ class FirestoreService {
     }
   }
 
-  Future<void> updateBooking(String bookingId, Map<String, dynamic> data) async {
+  Future<void> updateBooking(
+    String bookingId,
+    Map<String, dynamic> data,
+  ) async {
     try {
       await _firestore
           .collection(FirestoreCollections.bookings)
@@ -143,16 +160,21 @@ class FirestoreService {
     }
   }
 
-  Stream<List<BookingModel>> getUserBookings(String userId, List<String> statuses) {
+  Stream<List<BookingModel>> getUserBookings(
+    String userId,
+    List<String> statuses,
+  ) {
     return _firestore
         .collection(FirestoreCollections.bookings)
         .where('userId', isEqualTo: userId)
         .where('status', whereIn: statuses)
         .orderBy('date')
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => BookingModel.fromFirestore(doc))
-            .toList());
+        .map(
+          (snapshot) => snapshot.docs
+              .map((doc) => BookingModel.fromFirestore(doc))
+              .toList(),
+        );
   }
 
   Stream<List<BookingModel>> getAllBookings() {
@@ -160,25 +182,36 @@ class FirestoreService {
         .collection(FirestoreCollections.bookings)
         .orderBy('date', descending: true)
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => BookingModel.fromFirestore(doc))
-            .toList());
+        .map(
+          (snapshot) => snapshot.docs
+              .map((doc) => BookingModel.fromFirestore(doc))
+              .toList(),
+        );
   }
 
   Future<List<BookingModel>> getCompletedBookings(String userId) async {
     try {
+      logger.d('🔍 Firestore: Querying completed bookings for userId: $userId');
       final querySnapshot = await _firestore
           .collection(FirestoreCollections.bookings)
           .where('userId', isEqualTo: userId)
           .where('status', isEqualTo: BookingStatus.completed)
           .orderBy('date', descending: true)
           .get();
-      
+      logger.i(
+        '✅ Firestore returned ${querySnapshot.docs.length} completed bookings',
+      );
+      for (final doc in querySnapshot.docs) {
+        final data = doc.data();
+        logger.d(
+          '📦 FirestoreDoc: id=${doc.id}, status=${data['status']}, userId=${data['userId']}, provider=${data['providerName']}, date=${data['date']}',
+        );
+      }
       return querySnapshot.docs
           .map((doc) => BookingModel.fromFirestore(doc))
           .toList();
     } catch (e) {
-      print('Error getting completed bookings: $e');
+      logger.e('❌ Error getting completed bookings: $e');
       return [];
     }
   }

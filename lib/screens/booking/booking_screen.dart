@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/provider_model.dart';
@@ -11,10 +12,7 @@ import '../upcoming/upcoming_screen.dart';
 class BookingScreen extends StatefulWidget {
   final ServiceProviderModel provider;
 
-  const BookingScreen({
-    super.key,
-    required this.provider,
-  });
+  const BookingScreen({super.key, required this.provider});
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -72,7 +70,9 @@ class _BookingScreenState extends State<BookingScreen> {
           children: [
             Text('Provider: ${widget.provider.name}'),
             const SizedBox(height: 8),
-            Text('Service: ${ServiceTypes.serviceNames[widget.provider.serviceType]}'),
+            Text(
+              'Service: ${ServiceTypes.serviceNames[widget.provider.serviceType]}',
+            ),
             const SizedBox(height: 8),
             Text('Date: ${Helpers.formatDate(_selectedDate!)}'),
             const SizedBox(height: 8),
@@ -108,7 +108,10 @@ class _BookingScreenState extends State<BookingScreen> {
 
     try {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      final bookingProvider = Provider.of<BookingProvider>(context, listen: false);
+      final bookingProvider = Provider.of<BookingProvider>(
+        context,
+        listen: false,
+      );
 
       final success = await bookingProvider.createBooking(
         user: authProvider.user!,
@@ -137,9 +140,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
         // Navigate to upcoming screen
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const UpcomingScreen(),
-          ),
+          MaterialPageRoute(builder: (context) => const UpcomingScreen()),
           (route) => route.isFirst,
         );
       } else {
@@ -159,26 +160,23 @@ class _BookingScreenState extends State<BookingScreen> {
 
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: AppColors.errorColor,
-      ),
+      SnackBar(content: Text(message), backgroundColor: AppColors.errorColor),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final totalCost = Helpers.calculateTotalCost(_selectedHours, widget.provider.hourlyRate);
+    final totalCost = Helpers.calculateTotalCost(
+      _selectedHours,
+      widget.provider.hourlyRate,
+    );
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: const Text(
           'Book Service',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
@@ -194,7 +192,9 @@ class _BookingScreenState extends State<BookingScreen> {
               Card(
                 elevation: AppDimensions.cardElevation,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.borderRadius,
+                  ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.paddingLarge),
@@ -202,15 +202,13 @@ class _BookingScreenState extends State<BookingScreen> {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundColor: AppColors.primaryColor.withOpacity(0.1),
-                        child: Text(
-                          widget.provider.name.isNotEmpty
-                              ? widget.provider.name[0].toUpperCase()
-                              : 'P',
-                          style: const TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryColor,
+                        backgroundColor: AppColors.primaryColor.withValues(),
+                        child: ClipOval(
+                          child: CachedNetworkImage(
+                            imageUrl: widget.provider.imageUrl,
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -269,7 +267,9 @@ class _BookingScreenState extends State<BookingScreen> {
               Card(
                 elevation: AppDimensions.cardElevation,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.borderRadius,
+                  ),
                 ),
                 child: ListTile(
                   leading: const Icon(
@@ -305,7 +305,9 @@ class _BookingScreenState extends State<BookingScreen> {
               Card(
                 elevation: AppDimensions.cardElevation,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.borderRadius,
+                  ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.paddingMedium),
@@ -354,7 +356,9 @@ class _BookingScreenState extends State<BookingScreen> {
                 elevation: AppDimensions.cardElevation,
                 color: AppColors.primaryColor.withOpacity(0.1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.borderRadius,
+                  ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.paddingLarge),

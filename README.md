@@ -82,7 +82,9 @@ lib/
 
 ### Prerequisites
 - Flutter SDK (latest stable version)
-- Dart SDK (comes with Flutter)
+- Dart SDK (comes with Flutter)                        ),
+                        child: ClipOval(
+
 - Android Studio / Xcode (for mobile development)
 - Firebase account
 

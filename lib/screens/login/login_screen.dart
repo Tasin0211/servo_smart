@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/constants.dart';
 import '../../utils/helpers.dart';
+import '../../utils/utils.dart';
 import '../../widgets/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,9 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) {
+      logger.w('⚠️ Form validation failed');
       return;
     }
 
+    logger.i('📝 Login form submitted for: ${_emailController.text.trim()}');
     setState(() {
       _isLoading = true;
     });
@@ -43,11 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       bool success;
       if (_isLogin) {
+        logger.i('🔑 Attempting login...');
         success = await authProvider.signIn(
           _emailController.text.trim(),
           _passwordController.text,
         );
       } else {
+        logger.i('📝 Attempting registration...');
         success = await authProvider.register(
           _emailController.text.trim(),
           _passwordController.text,
@@ -58,9 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
 
       if (!success) {
+        logger.e('❌ Authentication returned false');
         _showError('Authentication failed. Please try again.');
+      } else {
+        logger.i('✅ Authentication successful!');
       }
     } catch (e) {
+      logger.e('❌ Authentication exception: $e');
       if (!mounted) return;
       _showError(e.toString());
     } finally {
@@ -74,10 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: AppColors.errorColor,
-      ),
+      SnackBar(content: Text(message), backgroundColor: AppColors.errorColor),
     );
   }
 
@@ -132,7 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: AppStrings.name,
                         prefixIcon: const Icon(Icons.person),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.borderRadius,
+                          ),
                         ),
                         filled: true,
                         fillColor: AppColors.cardColor,
@@ -144,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                  if (!_isLogin) const SizedBox(height: AppDimensions.paddingMedium),
+                  if (!_isLogin)
+                    const SizedBox(height: AppDimensions.paddingMedium),
                   // Email Field
                   TextFormField(
                     controller: _emailController,
@@ -153,7 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: AppStrings.email,
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadius,
+                        ),
                       ),
                       filled: true,
                       fillColor: AppColors.cardColor,
@@ -178,7 +189,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
                         onPressed: () {
                           setState(() {
@@ -187,7 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadius,
+                        ),
                       ),
                       filled: true,
                       fillColor: AppColors.cardColor,

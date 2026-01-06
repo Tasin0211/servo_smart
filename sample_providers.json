@@ -1,0 +1,362 @@
+[
+    {
+        "name": "Sarah Johnson",
+        "serviceType": "cleaner",
+        "hourlyRate": 25.0,
+        "rating": 4.7,
+        "totalReviews": 120,
+        "imageUrl": "https://randomuser.me/api/portraits/women/1.jpg",
+        "description": "Professional home cleaning with eco-friendly products."
+    },
+    {
+        "name": "Emily Smith",
+        "serviceType": "cleaner",
+        "hourlyRate": 22.0,
+        "rating": 4.6,
+        "totalReviews": 98,
+        "imageUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+        "description": "Experienced cleaner for apartments and offices."
+    },
+    {
+        "name": "Jessica Lee",
+        "serviceType": "cleaner",
+        "hourlyRate": 24.0,
+        "rating": 4.8,
+        "totalReviews": 110,
+        "imageUrl": "https://randomuser.me/api/portraits/women/3.jpg",
+        "description": "Detail-oriented and reliable cleaning services."
+    },
+    {
+        "name": "Amanda Brown",
+        "serviceType": "cleaner",
+        "hourlyRate": 23.0,
+        "rating": 4.5,
+        "totalReviews": 87,
+        "imageUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+        "description": "Fast and thorough home cleaning."
+    },
+    {
+        "name": "Olivia Davis",
+        "serviceType": "cleaner",
+        "hourlyRate": 26.0,
+        "rating": 4.9,
+        "totalReviews": 130,
+        "imageUrl": "https://randomuser.me/api/portraits/women/5.jpg",
+        "description": "Specialist in deep cleaning and move-out services."
+    },
+    {
+        "name": "Sophia Wilson",
+        "serviceType": "cleaner",
+        "hourlyRate": 21.0,
+        "rating": 4.4,
+        "totalReviews": 75,
+        "imageUrl": "https://randomuser.me/api/portraits/women/6.jpg",
+        "description": "Affordable and friendly cleaning help."
+    },
+    {
+        "name": "Grace Martinez",
+        "serviceType": "cleaner",
+        "hourlyRate": 27.0,
+        "rating": 4.8,
+        "totalReviews": 140,
+        "imageUrl": "https://randomuser.me/api/portraits/women/7.jpg",
+        "description": "Trusted by families for over 5 years."
+    },
+    {
+        "name": "Chloe Anderson",
+        "serviceType": "cleaner",
+        "hourlyRate": 23.5,
+        "rating": 4.7,
+        "totalReviews": 102,
+        "imageUrl": "https://randomuser.me/api/portraits/women/8.jpg",
+        "description": "Pet-friendly and flexible scheduling."
+    },
+    {
+        "name": "Ella Thomas",
+        "serviceType": "cleaner",
+        "hourlyRate": 22.5,
+        "rating": 4.6,
+        "totalReviews": 90,
+        "imageUrl": "https://randomuser.me/api/portraits/women/9.jpg",
+        "description": "Green cleaning for a healthy home."
+    },
+    {
+        "name": "Mia White",
+        "serviceType": "cleaner",
+        "hourlyRate": 24.5,
+        "rating": 4.7,
+        "totalReviews": 115,
+        "imageUrl": "https://randomuser.me/api/portraits/women/10.jpg",
+        "description": "Meticulous and punctual cleaning expert."
+    },
+    {
+        "name": "Michael Chen",
+        "serviceType": "cook",
+        "hourlyRate": 30.0,
+        "rating": 4.8,
+        "totalReviews": 95,
+        "imageUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+        "description": "Expert chef specializing in international cuisine."
+    },
+    {
+        "name": "David Kim",
+        "serviceType": "cook",
+        "hourlyRate": 28.0,
+        "rating": 4.7,
+        "totalReviews": 80,
+        "imageUrl": "https://randomuser.me/api/portraits/men/2.jpg",
+        "description": "Healthy meal prep and family dinners."
+    },
+    {
+        "name": "John Lee",
+        "serviceType": "cook",
+        "hourlyRate": 32.0,
+        "rating": 4.9,
+        "totalReviews": 120,
+        "imageUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+        "description": "Fine dining and event catering."
+    },
+    {
+        "name": "Chris Evans",
+        "serviceType": "cook",
+        "hourlyRate": 27.0,
+        "rating": 4.6,
+        "totalReviews": 70,
+        "imageUrl": "https://randomuser.me/api/portraits/men/4.jpg",
+        "description": "Quick and tasty home-cooked meals."
+    },
+    {
+        "name": "James Brown",
+        "serviceType": "cook",
+        "hourlyRate": 29.0,
+        "rating": 4.7,
+        "totalReviews": 85,
+        "imageUrl": "https://randomuser.me/api/portraits/men/5.jpg",
+        "description": "BBQ and grill master for parties."
+    },
+    {
+        "name": "William Scott",
+        "serviceType": "cook",
+        "hourlyRate": 31.0,
+        "rating": 4.8,
+        "totalReviews": 100,
+        "imageUrl": "https://randomuser.me/api/portraits/men/6.jpg",
+        "description": "Vegetarian and vegan meal specialist."
+    },
+    {
+        "name": "Daniel Garcia",
+        "serviceType": "cook",
+        "hourlyRate": 26.0,
+        "rating": 4.5,
+        "totalReviews": 60,
+        "imageUrl": "https://randomuser.me/api/portraits/men/7.jpg",
+        "description": "Latin and Mediterranean cuisine expert."
+    },
+    {
+        "name": "Matthew Walker",
+        "serviceType": "cook",
+        "hourlyRate": 33.0,
+        "rating": 4.9,
+        "totalReviews": 130,
+        "imageUrl": "https://randomuser.me/api/portraits/men/8.jpg",
+        "description": "Pastry chef and dessert specialist."
+    },
+    {
+        "name": "Joshua Hall",
+        "serviceType": "cook",
+        "hourlyRate": 28.5,
+        "rating": 4.6,
+        "totalReviews": 75,
+        "imageUrl": "https://randomuser.me/api/portraits/men/9.jpg",
+        "description": "Meal planning and weekly prep."
+    },
+    {
+        "name": "Andrew Young",
+        "serviceType": "cook",
+        "hourlyRate": 30.5,
+        "rating": 4.7,
+        "totalReviews": 90,
+        "imageUrl": "https://randomuser.me/api/portraits/men/10.jpg",
+        "description": "Home-style comfort food for all ages."
+    },
+    {
+        "name": "David Wilson",
+        "serviceType": "plumber",
+        "hourlyRate": 45.0,
+        "rating": 4.6,
+        "totalReviews": 78,
+        "imageUrl": "https://randomuser.me/api/portraits/men/11.jpg",
+        "description": "Licensed plumber for all home plumbing needs."
+    },
+    {
+        "name": "Brian Clark",
+        "serviceType": "plumber",
+        "hourlyRate": 42.0,
+        "rating": 4.5,
+        "totalReviews": 65,
+        "imageUrl": "https://randomuser.me/api/portraits/men/12.jpg",
+        "description": "Emergency repairs and leak fixes."
+    },
+    {
+        "name": "Kevin Lewis",
+        "serviceType": "plumber",
+        "hourlyRate": 47.0,
+        "rating": 4.7,
+        "totalReviews": 90,
+        "imageUrl": "https://randomuser.me/api/portraits/men/13.jpg",
+        "description": "Bathroom and kitchen installations."
+    },
+    {
+        "name": "Jason Martinez",
+        "serviceType": "plumber",
+        "hourlyRate": 44.0,
+        "rating": 4.6,
+        "totalReviews": 80,
+        "imageUrl": "https://randomuser.me/api/portraits/men/14.jpg",
+        "description": "Pipe replacement and water heater service."
+    },
+    {
+        "name": "Eric Robinson",
+        "serviceType": "plumber",
+        "hourlyRate": 46.0,
+        "rating": 4.8,
+        "totalReviews": 100,
+        "imageUrl": "https://randomuser.me/api/portraits/men/15.jpg",
+        "description": "Sewer and drain cleaning expert."
+    },
+    {
+        "name": "Ryan Walker",
+        "serviceType": "plumber",
+        "hourlyRate": 43.0,
+        "rating": 4.5,
+        "totalReviews": 70,
+        "imageUrl": "https://randomuser.me/api/portraits/men/16.jpg",
+        "description": "Affordable and reliable plumbing services."
+    },
+    {
+        "name": "Brandon King",
+        "serviceType": "plumber",
+        "hourlyRate": 48.0,
+        "rating": 4.9,
+        "totalReviews": 110,
+        "imageUrl": "https://randomuser.me/api/portraits/men/17.jpg",
+        "description": "Commercial and residential plumbing."
+    },
+    {
+        "name": "Justin Wright",
+        "serviceType": "plumber",
+        "hourlyRate": 45.5,
+        "rating": 4.7,
+        "totalReviews": 85,
+        "imageUrl": "https://randomuser.me/api/portraits/men/18.jpg",
+        "description": "Quick response and quality work."
+    },
+    {
+        "name": "Samuel Lopez",
+        "serviceType": "plumber",
+        "hourlyRate": 44.5,
+        "rating": 4.6,
+        "totalReviews": 77,
+        "imageUrl": "https://randomuser.me/api/portraits/men/19.jpg",
+        "description": "Licensed and insured plumbing contractor."
+    },
+    {
+        "name": "Adam Hill",
+        "serviceType": "plumber",
+        "hourlyRate": 46.5,
+        "rating": 4.8,
+        "totalReviews": 105,
+        "imageUrl": "https://randomuser.me/api/portraits/men/20.jpg",
+        "description": "Expert in pipe repairs and installations."
+    },
+    {
+        "name": "Emma Brown",
+        "serviceType": "electrician",
+        "hourlyRate": 50.0,
+        "rating": 4.9,
+        "totalReviews": 156,
+        "imageUrl": "https://randomuser.me/api/portraits/women/11.jpg",
+        "description": "Certified electrician with 10+ years experience."
+    },
+    {
+        "name": "Ava Harris",
+        "serviceType": "electrician",
+        "hourlyRate": 48.0,
+        "rating": 4.8,
+        "totalReviews": 140,
+        "imageUrl": "https://randomuser.me/api/portraits/women/12.jpg",
+        "description": "Residential and commercial electrical work."
+    },
+    {
+        "name": "Isabella Clark",
+        "serviceType": "electrician",
+        "hourlyRate": 49.0,
+        "rating": 4.7,
+        "totalReviews": 130,
+        "imageUrl": "https://randomuser.me/api/portraits/women/13.jpg",
+        "description": "Lighting and wiring specialist."
+    },
+    {
+        "name": "Mia Lewis",
+        "serviceType": "electrician",
+        "hourlyRate": 51.0,
+        "rating": 4.9,
+        "totalReviews": 160,
+        "imageUrl": "https://randomuser.me/api/portraits/women/14.jpg",
+        "description": "Smart home and automation expert."
+    },
+    {
+        "name": "Charlotte Walker",
+        "serviceType": "electrician",
+        "hourlyRate": 47.0,
+        "rating": 4.6,
+        "totalReviews": 120,
+        "imageUrl": "https://randomuser.me/api/portraits/women/15.jpg",
+        "description": "Panel upgrades and troubleshooting."
+    },
+    {
+        "name": "Amelia Hall",
+        "serviceType": "electrician",
+        "hourlyRate": 52.0,
+        "rating": 4.8,
+        "totalReviews": 170,
+        "imageUrl": "https://randomuser.me/api/portraits/women/16.jpg",
+        "description": "Emergency electrical repairs."
+    },
+    {
+        "name": "Harper Young",
+        "serviceType": "electrician",
+        "hourlyRate": 50.5,
+        "rating": 4.7,
+        "totalReviews": 150,
+        "imageUrl": "https://randomuser.me/api/portraits/women/17.jpg",
+        "description": "Licensed and insured electrician."
+    },
+    {
+        "name": "Evelyn King",
+        "serviceType": "electrician",
+        "hourlyRate": 48.5,
+        "rating": 4.6,
+        "totalReviews": 135,
+        "imageUrl": "https://randomuser.me/api/portraits/women/18.jpg",
+        "description": "Wiring and circuit breaker specialist."
+    },
+    {
+        "name": "Abigail Wright",
+        "serviceType": "electrician",
+        "hourlyRate": 49.5,
+        "rating": 4.8,
+        "totalReviews": 145,
+        "imageUrl": "https://randomuser.me/api/portraits/women/19.jpg",
+        "description": "Home safety and inspection services."
+    },
+    {
+        "name": "Emily Scott",
+        "serviceType": "electrician",
+        "hourlyRate": 51.5,
+        "rating": 4.9,
+        "totalReviews": 165,
+        "imageUrl": "https://randomuser.me/api/portraits/women/20.jpg",
+        "description": "Expert in electrical installations and repairs."
+    }
+]

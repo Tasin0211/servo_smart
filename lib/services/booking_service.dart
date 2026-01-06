@@ -106,4 +106,16 @@ class BookingService {
   Future<List<BookingModel>> getCompletedBookings(String userId) async {
     return await _firestoreService.getCompletedBookings(userId);
   }
+
+  // Update booking status (admin manual)
+  Future<void> updateBookingStatus(String bookingId, String newStatus) async {
+    try {
+      await _firestoreService.updateBooking(bookingId, {
+        'status': newStatus,
+      });
+    } catch (e) {
+      print('Error in updateBookingStatus: $e');
+      rethrow;
+    }
+  }
 }
