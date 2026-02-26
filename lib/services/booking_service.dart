@@ -3,10 +3,21 @@ import '../models/user_model.dart';
 import '../models/provider_model.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
+import '../utils/utils.dart';
 import 'firestore_service.dart';
 
 class BookingService {
   final FirestoreService _firestoreService = FirestoreService();
+
+  // Private helper: update only the status field of a booking (DRY principle).
+  Future<void> _updateStatus(String bookingId, String status) async {
+    try {
+      await _firestoreService.updateBooking(bookingId, {'status': status});
+    } catch (e) {
+      logger.e('❌ Error updating booking status to "$status": $e');
+      rethrow;
+    }
+  }
 
   // Create a new booking
   Future<String> createBooking({
@@ -17,7 +28,7 @@ class BookingService {
   }) async {
     try {
       final totalCost = Helpers.calculateTotalCost(hours, provider.hourlyRate);
-      
+
       final booking = BookingModel(
         bookingId: '', // Will be set by Firestore
         userId: user.id,
@@ -35,65 +46,46 @@ class BookingService {
 
       return await _firestoreService.createBooking(booking);
     } catch (e) {
-      print('Error in createBooking: $e');
+      logger.e('❌ Error in createBooking: $e');
       rethrow;
     }
   }
 
   // Cancel a booking
-  Future<void> cancelBooking(String bookingId) async {
-    try {
-      await _firestoreService.updateBooking(bookingId, {
-        'status': BookingStatus.cancelled,
-      });
-    } catch (e) {
-      print('Error in cancelBooking: $e');
-      rethrow;
-    }
-  }
+  Future<void> cancelBooking(String bookingId) =>
+      _updateStatus(bookingId, BookingStatus.cancelled);
 
   // Mark booking as ongoing
-  Future<void> markAsOngoing(String bookingId) async {
-    try {
-      await _firestoreService.updateBooking(bookingId, {
-        'status': BookingStatus.ongoing,
-      });
-    } catch (e) {
-      print('Error in markAsOngoing: $e');
-      rethrow;
-    }
-  }
+  Future<void> markAsOngoing(String bookingId) =>
+      _updateStatus(bookingId, BookingStatus.ongoing);
 
   // Mark booking as completed
-  Future<void> markAsCompleted(String bookingId) async {
-    try {
-      await _firestoreService.updateBooking(bookingId, {
-        'status': BookingStatus.completed,
-      });
-    } catch (e) {
-      print('Error in markAsCompleted: $e');
-      rethrow;
-    }
-  }
+  Future<void> markAsCompleted(String bookingId) =>
+      _updateStatus(bookingId, BookingStatus.completed);
 
   // Rate a booking
-  Future<void> rateBooking(String bookingId, String providerId, double rating) async {
+  Future<void> rateBooking(
+    String bookingId,
+    String providerId,
+    double rating,
+  ) async {
     try {
       // Update booking with rating
-      await _firestoreService.updateBooking(bookingId, {
-        'rating': rating,
-      });
+      await _firestoreService.updateBooking(bookingId, {'rating': rating});
 
       // Update provider's average rating
       await _firestoreService.updateProviderRating(providerId, rating);
     } catch (e) {
-      print('Error in rateBooking: $e');
+      logger.e('❌ Error in rateBooking: $e');
       rethrow;
     }
   }
 
   // Get user bookings by status
-  Stream<List<BookingModel>> getUserBookings(String userId, List<String> statuses) {
+  Stream<List<BookingModel>> getUserBookings(
+    String userId,
+    List<String> statuses,
+  ) {
     return _firestoreService.getUserBookings(userId, statuses);
   }
 
@@ -103,19 +95,11 @@ class BookingService {
   }
 
   // Get completed bookings
-  Future<List<BookingModel>> getCompletedBookings(String userId) async {
-    return await _firestoreService.getCompletedBookings(userId);
+  Future<List<BookingModel>> getCompletedBookings(String userId) {
+    return _firestoreService.getCompletedBookings(userId);
   }
 
   // Update booking status (admin manual)
-  Future<void> updateBookingStatus(String bookingId, String newStatus) async {
-    try {
-      await _firestoreService.updateBooking(bookingId, {
-        'status': newStatus,
-      });
-    } catch (e) {
-      print('Error in updateBookingStatus: $e');
-      rethrow;
-    }
-  }
+  Future<void> updateBookingStatus(String bookingId, String newStatus) =>
+      _updateStatus(bookingId, newStatus);
 }

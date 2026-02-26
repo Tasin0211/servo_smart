@@ -56,7 +56,7 @@ class FirestoreService {
           .doc(userId)
           .update(data);
     } catch (e) {
-      print('Error updating user: $e');
+      logger.e('❌ Error updating user: $e');
       rethrow;
     }
   }
@@ -75,7 +75,7 @@ class FirestoreService {
           .map((doc) => ServiceProviderModel.fromFirestore(doc))
           .toList();
     } catch (e) {
-      print('Error getting providers: $e');
+      logger.w('⚠️ Error getting providers: $e');
       return [];
     }
   }
@@ -92,7 +92,7 @@ class FirestoreService {
       }
       return null;
     } catch (e) {
-      print('Error getting provider: $e');
+      logger.w('⚠️ Error getting provider: $e');
       return null;
     }
   }
@@ -115,7 +115,7 @@ class FirestoreService {
             'totalReviews': newTotalReviews,
           });
     } catch (e) {
-      print('Error updating provider rating: $e');
+      logger.e('❌ Error updating provider rating: $e');
       rethrow;
     }
   }
@@ -128,7 +128,7 @@ class FirestoreService {
           .add(booking.toFirestore());
       return docRef.id;
     } catch (e) {
-      print('Error creating booking: $e');
+      logger.e('❌ Error creating booking: $e');
       rethrow;
     }
   }
@@ -143,7 +143,7 @@ class FirestoreService {
           .doc(bookingId)
           .update(data);
     } catch (e) {
-      print('Error updating booking: $e');
+      logger.e('❌ Error updating booking: $e');
       rethrow;
     }
   }
@@ -155,7 +155,7 @@ class FirestoreService {
           .doc(bookingId)
           .delete();
     } catch (e) {
-      print('Error deleting booking: $e');
+      logger.e('❌ Error deleting booking: $e');
       rethrow;
     }
   }
